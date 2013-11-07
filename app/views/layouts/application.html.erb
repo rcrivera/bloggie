@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bloggie</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+	<div class="page-header">
+  	<h1>bloggie <small>express urself</small></h1>
+  		<div class="navigation">
+  		<ul class="nav nav-tabs">
+			  <li class="active"><%= link_to 'home', root_url %></li>
+			  <li><%= link_to 'posts', posts_path %></li>
+			  <li><%= link_to 'about us', about_path %></li>
+			  <li><%= link_to 'contact', contact_path %></li>
+			</ul>
+		</div>
+	</div>
+    <div class="row">
+      <div class="span12">
+      	<%= yield %>
+      </div>
+   	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>post list</h3>
+        <div id = 'tag_search'>  
+            <h4>browse by tag: </h4>
+          <% @tag_search.each do |tag|%>
+              <span class="tag"><%= link_to tag.title, {:controller => "posts", :action => "index", :tag_title => tag.title}%></span>
+          <% end %> 
+        </div>
+
+        <p><%= link_to '+ add new post', new_post_path %></p>
+    </div>
+    <table class="table">
+        <thead><tr><th>name</th><th>time</th><th>body</th><th>tags</th><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.name %></td>
+            <td><%=time_ago_in_words(post.created_at)%></td>
+
+            <td><%= post.body %></td>
+            <td>
+              <% @indv_tags[post.id].each do |tag| %>
+                <span class="tag"><%= link_to tag.title, {:controller => "posts", :action => "index", :tag_title => tag.title}%></span> </br></br>
+              <% end %>
+            </td>
+            <td><%= link_to 'show', post %></td>
+            <td><%= link_to 'edit', edit_post_path(post) %></td>
+            <td><%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+    <% end %>
+        </tbody>
+    </table>
+
+</div>
+

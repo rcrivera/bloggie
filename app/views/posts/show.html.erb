@@ -1,0 +1,43 @@
+
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h2><%= @post.name %></h2>
+  	<p>date: <%= @post.created_at %></p>
+  	<p><%= link_to 'edit', edit_post_path(@post) %> | <%= link_to 'back', posts_path %><p>
+  </div>
+  <div class="panel-body">
+    <p><%= @post.body %></p>
+  </div>
+
+  <div id = "tags">
+  	<%= link_to '+ add tag', new_tag_path(:post_id => @post.id) %>
+    <% @tags.each do |tag|%>
+      <span class="tag"><%= tag.title %> <%= link_to 'x', tag, method: :delete, data: { confirm: 'Are you sure?' } %> </span>
+    <% end %>
+  </div>
+  
+  <div id="comments">
+  <h4>comments</h4>
+  <%= link_to '+ add new comment', new_comment_path(:post_id => @post.id) %>
+
+	<table class="table">
+      <thead><tr><th>name</th><th>body</th><th><th></th><th></th></tr></thead>
+      <tbody>
+        <% @comments.each do |comment|%>
+        <tr>
+          <td><%= comment.name %></td>
+          <td><%= comment.content %></td>
+          <td><%= link_to 'edit', edit_comment_path(comment) %></td>
+        	<td><%= link_to 'delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+  <% end %>
+      </tbody>
+  </table>
+</div>
+
+
+
+</div>
+
+
