@@ -27,11 +27,21 @@ class TagsController < ApplicationController
   # POST /tags.json
   def create
     @tag = Tag.new(tag_params)
+    @post_id = @tag.post_id
+    tags_list = @tag.title.split(",")
+    #Rails.logger.info "XXXXXXXXXXXXXXXXXXXXX  Tag = #{tags_list}"
+
+    i = 1
+    tags_list.each do |tag|
+      @tag = Tag.new(:post_id => @post_id, :title => tag)
+      @tag.save
+      i+=1
+    end
 
     respond_to do |format|
-      if @tag.save
-        post_id = @tag.post_id
-        format.html { redirect_to :controller => 'posts', :action => 'show', :id => post_id, notice: 'Comment was successfully created.' }
+
+      if i!= tags_list.size
+        format.html { redirect_to :controller => 'posts', :action => 'show', :id => @post_id, notice: 'Tag was successfully created.' }
         format.json { render action: 'show', status: :created, location: @tag }
       else
         format.html { render action: 'new' }

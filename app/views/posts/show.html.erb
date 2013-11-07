@@ -13,7 +13,7 @@
   <div id = "tags">
   	<%= link_to '+ add tag', new_tag_path(:post_id => @post.id) %>
     <% @tags.each do |tag|%>
-      <span class="tag"><%= tag.title %> <%= link_to 'x', tag, method: :delete, data: { confirm: 'Are you sure?' } %> </span>
+      <span class="tag"><%= tag.title %> <%= link_to 'x', tag, method: :delete%> </span>
     <% end %>
   </div>
   
