@@ -8,4 +8,5 @@ class MainController < ApplicationController
 
   def contact
   end
+  
 end
