@@ -15,3 +15,23 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+	// cache your tabs selector
+  var $tabs = $('.nav li');
+  // see what page you are currently on to compare to tabs
+  var pageLocation = window.location.pathname;
+  // remove the Active class from the tabs
+  $tabs.removeClass('active');
+
+  // loop through your tabs
+  $tabs.each(function () {
+    var $tab = $(this);
+    var tabHref = $tab.find("a[href]").attr('href');
+   
+    if (tabHref == pageLocation){
+      $tab.addClass('active');
+    }
+  });
+}); 
+
