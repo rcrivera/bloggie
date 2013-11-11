@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+b = Post.new
+b.name = "First Heroku post"
+b.body = "This is the body of the first post"
+b.save
